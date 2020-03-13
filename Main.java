@@ -42,7 +42,7 @@ public class Main {
         // Output table declaration.
         String columnDeclaration = "|";
         for(int i = 0; i <= variables; i++) columnDeclaration += "c|";
-        String tableStart = "\\begin{table}\n" + "\\centering\n" + "\\begin{tabular}" + "{" + columnDeclaration + "}" + "\n\\hline";
+        String tableStart = "\\begin{table}[!htb]\n" + "\\centering\n" + "\\begin{tabular}" + "{" + columnDeclaration + "}" + "\n\\hline";
         System.out.println(tableStart);
 
         // Output column template.
