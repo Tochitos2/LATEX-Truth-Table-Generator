@@ -4,7 +4,10 @@ import java.util.Scanner;
 
 public class Main {
 
+    //TODO: Replace string additions with StringBuilders.
     public static void main(String[] args) {
+
+        // Get the number of variables.
         Scanner scanner = new Scanner(System.in);
         int argument = scanner.nextInt();
         int variables = argument;
@@ -15,7 +18,7 @@ public class Main {
         String[][] values = new String[rows][variables];
         String line;
 
-        //generate data (back to front rows)
+        // Generate table data.
         for(int i = 0; i < variables; i++)
         {
             currentLength = 0;
@@ -32,14 +35,17 @@ public class Main {
                     currentLength = 0;
                 }
             }
+            // Pattern doubles each column.
             setLength *= 2;
         }
 
+        // Output table declaration.
         String columnDeclaration = "|";
         for(int i = 0; i <= variables; i++) columnDeclaration += "c|";
         String tableStart = "\\begin{table}\n" + "\\centering\n" + "\\begin{tabular}" + "{" + columnDeclaration + "}";
         System.out.println(tableStart);
 
+        // Output column template.
         String columns = "";
         char variable = 'A';
         for(int i = 0; i < variables; i++)
@@ -68,6 +74,7 @@ public class Main {
             System.out.println(line);
         }
 
+        // Output end of table.
         String tableEnd = "\\end{tabular}\n" + " \\end{table}";
         System.out.println(tableEnd);
     }
