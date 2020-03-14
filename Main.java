@@ -4,19 +4,17 @@ import java.util.Scanner;
 
 public class Main {
 
-    //TODO: Replace string additions with StringBuilders.
     public static void main(String[] args) {
 
         // Get the number of variables.
         Scanner scanner = new Scanner(System.in);
-        int argument = scanner.nextInt();
-        int variables = argument;
+        int variables = scanner.nextInt();
         int rows = (int)Math.pow(2, variables);
         String value = "T";
         int setLength =  1;
         int currentLength;
         String[][] values = new String[rows][variables];
-        String line;
+        StringBuilder line;
 
         // Generate table data.
         for(int i = 0; i < variables; i++)
@@ -30,7 +28,7 @@ public class Main {
 
                 if(currentLength == setLength)
                 {
-                    if(value == "T") { value = "F"; }
+                    if(value.equals("T") ) value = "F";
                     else { value = "T"; }
                     currentLength = 0;
                 }
@@ -40,37 +38,37 @@ public class Main {
         }
 
         // Output table declaration.
-        String columnDeclaration = "|";
-        for(int i = 0; i <= variables; i++) columnDeclaration += "c|";
+        StringBuilder columnDeclaration = new StringBuilder("|");
+        for(int i = 0; i <= variables; i++) columnDeclaration.append("c|");
         String tableStart = "\\begin{table}[!htb]\n" + "\\centering\n" + "\\begin{tabular}" + "{" + columnDeclaration + "}" + "\n\\hline";
         System.out.println(tableStart);
 
         // Output column template.
-        String columns = "";
+        StringBuilder columns = new StringBuilder();
         char variable = 'A';
         for(int i = 0; i < variables; i++)
         {
-            columns += variable + " & ";
+            columns.append(variable).append(" & ");
             variable++;
         }
-        columns += "\\\\\n\\hline";
+        columns.append("\\\\\n\\hline");
         System.out.println(columns);
 
 
         //output data rows
         for(int i = 0; i < rows; i++)
         {
-            line = "";
+            line = new StringBuilder();
 
             for(int j = variables-1; j >= 0; j--)
             {
-                line += values[i][j];
+                line.append(values[i][j]);
                 if(j != 0)
                 {
-                    line += " & ";
+                    line.append(" & ");
                 }
             }
-            line += "\\\\ \\hline";
+            line.append("\\\\ \\hline");
             System.out.println(line);
         }
 
